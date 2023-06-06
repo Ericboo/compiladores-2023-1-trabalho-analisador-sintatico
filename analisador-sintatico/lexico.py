@@ -5,7 +5,7 @@ def remover_comentarios(source_code):
     return re.sub(pattern, '', source_code)
 
 def analizar(source_code):
-    keyword = r"^int$|^void$|^float$|^char$|^double$|^if$|^else$|^while$|^return$|^struct$|^for$|^switch$|^case$|^break$|^default$"
+    keyword = r"^var$|^if$|^else$|^while$|^return$|^struct$|^for$|^switch$|^case$|^break$|^default$|^print$|^true$|^false$|^and$|^or$|^fun$"
     operator = r"->|=|\+\+|--|[-+*/%&<>!]=?|[-+*/%&<>]|<<|>>|\|\|"
     delimitator = r"[(),:;{}\[\]]"
     int_const = r"\d+(?="+operator+"|"+delimitator+"|\s|$)"
