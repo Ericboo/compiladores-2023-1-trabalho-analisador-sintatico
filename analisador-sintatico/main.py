@@ -2,19 +2,14 @@ from lexico import LexicalAnalyzer
 from sintatico import Parser
 
 source_code = """
-   // Programa de exemplo 5
-fun getSum(a, b) {
-  return a + b;
-}
+    // Programa de exemplo 2
+    var a = 1;
 
-var sum = getSum(4, 5);
-
-if(sum > 10) {
-  print "yes";
-} else {
-  print "no";
-}
-    """
+    while (a < 10) {
+    print a;
+    a = a + 1;
+    }
+"""
 
 tokens = LexicalAnalyzer(source_code)
 parser = Parser(tokens)
