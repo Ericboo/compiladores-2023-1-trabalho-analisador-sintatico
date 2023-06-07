@@ -18,14 +18,33 @@ class Parser:
             return self.var_decl()
         elif self.current_token[0] == 'KEYWORD' and self.current_token[1] == 'fun':
             return self.fun_decl()
+        elif self.current_token[0] == 'KEYWORD' and self.current_token[1] == 'if':
+            return self.if_stmt()
         else:
             return self.statement()
+
+    def if_stmt(self):
+        self.match(('KEYWORD', 'if'))
+        self.match(('DEL', '('))
+        expression = self.expression()
+        self.match(('DEL', ')'))
+        block = self.block()
+
+        try:
+            self.advance()
+            self.match('KEYWORD', 'else')
+            block = self.block()
+        except Exception as e:
+            self.goBack()
+            print("", end="")
+        return ('ifStmt', expression, block)
 
     def var_decl(self):
         self.match(('KEYWORD', 'var'))
         variable_name = self.match(('ID', None))
         try:
             self.match(('OP', '='))
+            value = self.expression()
         except Exception as e:
             if "Syntax Error: Expected ('OP', '='), but got ('DEL', ';')" in str(e):
                 print("", end="")
@@ -199,6 +218,9 @@ class Parser:
         elif self.current_token[0] == 'CONST':
             value = self.match(('CONST', None))
             return ('const', value)
+        elif self.current_token[0] == 'KEYWORD' and self.current_token[1] == 'true' or 'KEYWORD' and self.current_token[1] == 'false':
+            value = self.match(('KEYWORD', None))
+            return ('const',  value)
         elif self.current_token[0] == 'DEL' and self.current_token[1] == '(':
             self.match(('DEL', '('))
             expression = self.expression()
