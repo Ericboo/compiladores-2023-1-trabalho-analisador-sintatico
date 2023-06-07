@@ -1,4 +1,5 @@
 from lexico import LexicalAnalyzer
+from sintatico import sintatico
 
 source_code = """
     // Programa de exemplo 3
@@ -9,6 +10,7 @@ source_code = """
     printSum(10, 15);
     """
 
-lexer = LexicalAnalyzer(source_code)
-for token in lexer:
-    print(token)
+tokens = LexicalAnalyzer(source_code)
+
+sintatico(tokens)
+

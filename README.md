@@ -1,20 +1,20 @@
 # Trabalho: Analisador Sintático
 
 Nome dos alunos e números de matrícula:
-* Aluno: ___________________________
-* Aluno: ___________________________
+* Aluno: Eric Jonai Costa Souza
+* Aluno: Nathan Machado dos Santos
 * Disciplina: Compiladores
 * Semestre: 2023/1
-* Data de entrega: 31/05/2023
+* Data de entrega: 07/06/2023
 * Valor: 4,0
 
 > Orientações: preencher os dados da dupla antes da data de entrega
 
 ## Como entregar este trabalho
 
-Faça um fork deste repositório e faça os commits com o código que você utilizou para chegar nos resultados. Serão aceitos os commits até a data de 31/03/2023 às 13:59:59 (antes da aula).
+Faça um fork deste repositório e faça os commits com o código que você utilizou para chegar nos resultados. Serão aceitos os commits até a data de 07/06/2023 às 13:59:59 (antes da aula).
 
-No dia 31/05/2023 haverá uma apresentação expositiva das técnicas utilizadas e resultado.
+No dia 07/06/2023 haverá uma apresentação expositiva das técnicas utilizadas e resultado.
 
 **Códigos duplicados ou com bastante semelhança terão suas notas zeradas**
 
