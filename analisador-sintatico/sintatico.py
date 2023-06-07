@@ -109,13 +109,21 @@ class Parser:
         return expression
 
     def logic_and(self):
-        expression = self.equality()
+        expression = self.logic_not()
         while self.current_token[0] == 'OP' and self.current_token[1] == 'and':
             operator = self.match(('OP', 'and'))
-            expression2 = self.equality()
+            expression2 = self.logic_not()
             expression = ('logicAnd', operator, expression, expression2)
         return expression
-
+    
+    def logic_not(self):
+        expression = self.equality()
+        while self.current_token[0] == 'OP' and self.current_token[1] == '!':
+            operator = self.match(('OP', '!'))
+            expression2 = self.equality()
+            expression = ('logicNot', operator, expression, expression2)
+        return expression
+    
     def equality(self):
         expression = self.comparison()
         while self.current_token[0] == 'OP' and (self.current_token[1] == '==' or self.current_token[1] == '!='):
@@ -130,6 +138,10 @@ class Parser:
                                                 self.current_token[1] == '<=' or self.current_token[1] == '>='):
             operator = self.match(('OP', None))
             expression2 = self.addition()
+            self.advance()
+            logic = self.logic_or()
+            if logic == None:
+                self.goBack()
             expression = ('comparison', operator, expression, expression2)
         return expression
 
@@ -201,3 +213,10 @@ class Parser:
             self.current_token = self.tokens[self.current_token_index]
         else:
             self.current_token = ('EOF', None)
+
+    def goBack(self):
+        self.current_token_index -= 1
+        if self.current_token_index > 0:
+            self.current_token = self.tokens[self.current_token_index]
+        else:
+            return None
