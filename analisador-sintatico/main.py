@@ -3,7 +3,7 @@ from sintatico import Parser
 
 source_code = """
     // Programa de exemplo 2
-    var a = 1;
+    var a = 2;
 
     while (a < 10) {
     print a;

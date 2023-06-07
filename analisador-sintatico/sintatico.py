@@ -24,7 +24,13 @@ class Parser:
     def var_decl(self):
         self.match(('KEYWORD', 'var'))
         variable_name = self.match(('ID', None))
-        self.match(('OP', '='))
+        try:
+            self.match(('OP', '='))
+        except Exception as e:
+            if "Syntax Error: Expected ('OP', '='), but got ('DEL', ';')" in str(e):
+                print("", end="")
+            else:
+                raise Exception("Syntax Error: Expected ('DEL', ';')")
         value = self.expression()
         self.match(('DEL', ';'))
         return ('varDecl', variable_name, value)
