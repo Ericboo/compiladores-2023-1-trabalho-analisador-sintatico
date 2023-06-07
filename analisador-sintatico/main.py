@@ -1,8 +1,8 @@
 from lexico import LexicalAnalyzer
-from sintatico import sintatico
+from sintatico import Parser
 
 source_code = """
-    // Programa de exemplo 3
+   // Programa de exemplo 3
     fun printSum(a, b) {
     print a + b;
     }
@@ -11,6 +11,7 @@ source_code = """
     """
 
 tokens = LexicalAnalyzer(source_code)
+parser = Parser(tokens)
+print(parser.parse())
 
-sintatico(tokens)
 
